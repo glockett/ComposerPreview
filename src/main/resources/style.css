@@ -1,0 +1,28 @@
+/* PreiewURL styles */
+
+.root  {
+    -fx-spacing: 10px;
+    -fx-padding: 10;
+    -fx-font-size: 16px;
+    -fx-max-width: 500px;
+    -fx-max-height: 500px;
+}
+.label {
+    -fx-font-size: 16px;
+}
+
+.text-field {
+    -fx-font-size: 16px;
+    -fx-max-width: 500px;
+}
+
+.button {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#9EA7E5,#61A2B1);
+    -fx-text-fill: #383640;
+}
+.button:hover {
+    -fx-background-color: linear-gradient(#2A5058,#61A2B1);
+    -fx-text-fill: #FFFFFF;
+}
