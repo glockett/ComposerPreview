@@ -83,7 +83,8 @@ public class ComposerPreview extends Application {
             } else if (sendTo.isEmpty()) {
                 lbErrorMsg.setText("* Error! - Please enter a valid email!");
             } else if (isValidEmailAddress(sendTo)) {
-                sendMail(sendTo);
+                getPreviewURL(url);
+                send(sendTo);
             } else {
                 lbErrorMsg.setText("* Error - Email is not valid!");
             }
@@ -101,8 +102,6 @@ public class ComposerPreview extends Application {
         window.setScene(scene);
         scene.getStylesheets().add("style.css");
         window.show();
-
-
     }
 
     public static String getPreviewURL(String composerPreview_URL) {
@@ -115,9 +114,9 @@ public class ComposerPreview extends Application {
         return PREVIEW_URL;
     }
 
-    public void sendMail(String emailAddress) {
+    public static void send(String emailAddress) {
 
-        String from = "gwyn.lockett@htmail.co.uk";
+        String from = SENDER;
 
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
@@ -133,6 +132,7 @@ public class ComposerPreview extends Application {
                 });
 
         try {
+
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(from));
             message.setRecipients(Message.RecipientType.TO,
@@ -142,7 +142,6 @@ public class ComposerPreview extends Application {
             message.setContent("<p>Please click the link to launch in the app and follow the on-board authentication " +
                     "prompts.</p><p>(Note: You must be signed in with a Guardian Email address)</p> " +
                     "<a href=//" + PREVIEW_URL + ">" + PREVIEW_URL + "</a>", "text/html");
-
             Transport.send(message);
 
         } catch (MessagingException e) {
