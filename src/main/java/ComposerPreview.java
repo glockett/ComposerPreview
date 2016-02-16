@@ -25,6 +25,7 @@ public class ComposerPreview extends Application {
     private static final String ENVIRONMENT_URL = "http://viewer.code.dev-gutools.co.uk/preview/";
     private static final String MAPI_URL = "x-gu://preview.mobile-apps.guardianapis.com/items/";
     private static final String SENDER = "gumobtest@gmail.com";
+    private static String smtpHost = "localhost";
 
     Stage window;
     Label lbAppTitle;
@@ -77,6 +78,7 @@ public class ComposerPreview extends Application {
         btnSend.setText("Send Preview Link");
         btnSend.setOnAction(e -> {
 
+            //When the button is clicked do this:
             String url = composerURL.getText();
             String sendTo = email.getText();
 
@@ -90,16 +92,6 @@ public class ComposerPreview extends Application {
                 }
             }
 
-//            if (url.isEmpty()) {
-//                lbErrorMsg.setText("* Error! - Please enter the ComposerURL");
-//            } else if (sendTo.isEmpty()) {
-//                lbErrorMsg.setText("* Error! - Please enter a valid email!");
-//            } else if (isValidEmailAddress(sendTo)) {
-//                getPreviewURL(url);
-//                send(sendTo);
-//            } else {
-//                lbErrorMsg.setText("* Error - Email is not valid!");
-//            }
         });
 
         HBox hb = new HBox();
@@ -126,9 +118,12 @@ public class ComposerPreview extends Application {
         return PREVIEW_URL;
     }
 
-    public static void send(String emailAddress) {
 
-        String from = SENDER;
+
+
+
+
+    public static void send(String emailAddress) {
 
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
@@ -139,14 +134,14 @@ public class ComposerPreview extends Application {
         Session session = Session.getInstance(props,
                 new javax.mail.Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(USERNAME, PWD);
+                        return new PasswordAuthentication("gwyn.lockett@guardian.co.uk", "xcxrveyzxnywqdvq");
                     }
                 });
 
         try {
 
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(from));
+            message.setFrom(new InternetAddress(emailAddress));
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(emailAddress));
             message.setSubject("Mobile App - Preview Link");
@@ -156,11 +151,22 @@ public class ComposerPreview extends Application {
                     "<a href=//" + PREVIEW_URL + ">" + PREVIEW_URL + "</a>", "text/html");
             Transport.send(message);
 
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success - ");
+            alert.setHeaderText(null);
+            alert.setContentText("Success - Your Email has been sent");
+            alert.showAndWait();
+
+
+
+
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }
 
-    }
+  }
+
+
 
     private boolean valdateFields() {
         if (composerURL.getText().isEmpty() | email.getText().isEmpty()) {
@@ -204,6 +210,10 @@ public class ComposerPreview extends Application {
 //        }
 //        return result;
 //    }
+
+
+
+
     }
 }
 
