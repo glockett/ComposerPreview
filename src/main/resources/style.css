@@ -29,13 +29,16 @@
     -fx-text-fill: #FFFFFF;
 }
 
-.btnExit {
+.button-Exit {
     -fx-font-size: 16px;
     -fx-font-weight: bold;
-    -fx-background-color: linear-gradient(#b48484,#f29090);
+    -fx-background-color: linear-gradient(#e56e6e,#c30505);
     -fx-text-fill: #383640;
-
-    -fx-padding: 1000 10 10 10;
-
 }
+
+.button-Exit:hover {
+    -fx-background-color: linear-gradient(#c30505,#e56e6e);
+    -fx-text-fill: #FFFFFF;
+}
+
 

@@ -73,7 +73,8 @@ public class ComposerPreview extends Application {
         //Defining the buttons
         btnExit = new Button();
         btnExit.setText("Quit Preview Generator");
-        btnExit.setStyle("-fx-background-color: linear-gradient(#e56e6e,#c30505); -fx-text-fill: #383640;");
+        btnExit.getStyleClass().add("button-Exit");
+        //btnExit.setStyle("-fx-background-color: linear-gradient(#e56e6e,#c30505); -fx-text-fill: #383640;");
         btnExit.setOnAction(e -> {
             window.close();
         });
