@@ -24,17 +24,15 @@ public class ComposerPreview extends Application {
     private static String PREVIEW_URL;
     private static final String ENVIRONMENT_URL = "http://viewer.gutools.co.uk/preview/";
     private static final String MAPI_URL = "x-gu://preview.mobile-apps.guardianapis.com/items/";
-    //private static final String SENDER = "gumobtest@gmail.com";
-    //private static String smtpHost = "localhost";
 
     Stage window;
     Label lbAppTitle;
     Label lbAppInstructions;
     Label lbErrorMsg;
-    Label lbSuccessMsg;
     TextField composerURL;
     TextField email;
     Button btnSend;
+    Button btnExit;
     Image logo;
 
     public static void main(String[] args) {
@@ -58,8 +56,6 @@ public class ComposerPreview extends Application {
         lbAppInstructions = new Label("Please enter the composerULR and the email address you wish to send the link to");
         lbErrorMsg = new Label("");
         lbErrorMsg.setStyle("-fx-text-fill: red;");
-        lbSuccessMsg = new Label("");
-        lbSuccessMsg.setStyle("-fx-text-fill: green;");
 
         //Defining the ComposerURL text field
         composerURL = new TextField();
@@ -72,6 +68,14 @@ public class ComposerPreview extends Application {
         email.setPromptText("Enter the email address.");
         email.setPrefColumnCount(10);
         email.getText();
+
+        //Defining the buttons
+        btnExit = new Button();
+        btnExit.setText("Quit / Close");
+        btnExit.setStyle(" -fx-font-size: 14px;");
+        btnExit.setOnAction(e -> {
+                window.close();
+        });
 
         //Defining the buttons
         btnSend = new Button();
@@ -92,8 +96,6 @@ public class ComposerPreview extends Application {
                     e1.printStackTrace();
                 }
             }
-
-
         });
 
         HBox hb = new HBox();
@@ -101,7 +103,7 @@ public class ComposerPreview extends Application {
         hb.setSpacing(10);
 
         VBox vb = new VBox();
-        vb.getChildren().addAll(img, lbAppTitle, lbAppInstructions, composerURL, email, lbErrorMsg, btnSend, lbSuccessMsg);
+        vb.getChildren().addAll(img, lbAppTitle, lbAppInstructions, composerURL, email, lbErrorMsg, btnSend, btnExit);
         vb.setSpacing(10);
 
         Scene scene = new Scene(vb, 700, 400);
@@ -121,7 +123,6 @@ public class ComposerPreview extends Application {
         PREVIEW_URL = composerPreview_URL.replace(ENVIRONMENT_URL, MAPI_URL);
 
         //PREVIEW_URL = MAPI_URL + s;
-
         System.out.println(PREVIEW_URL);
 
         return PREVIEW_URL;
