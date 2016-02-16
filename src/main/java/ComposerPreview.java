@@ -20,12 +20,12 @@ import java.util.regex.Pattern;
 public class ComposerPreview extends Application {
 
     private static String USERNAME = "gwyn.lockett@guardian.co.uk";
-    private static String PWD = "vtzqpptoodgwpoks";
+    private static String PWD = "xcxrveyzxnywqdvq";
     private static String PREVIEW_URL;
-    private static final String ENVIRONMENT_URL = "http://viewer.code.dev-gutools.co.uk/preview/";
+    private static final String ENVIRONMENT_URL = "http://viewer.gutools.co.uk/preview/";
     private static final String MAPI_URL = "x-gu://preview.mobile-apps.guardianapis.com/items/";
-    private static final String SENDER = "gumobtest@gmail.com";
-    private static String smtpHost = "localhost";
+    //private static final String SENDER = "gumobtest@gmail.com";
+    //private static String smtpHost = "localhost";
 
     Stage window;
     Label lbAppTitle;
@@ -110,7 +110,7 @@ public class ComposerPreview extends Application {
         window.show();
     }
 
-    public void clearTextFields(){
+    public void clearTextFields() {
         composerURL.clear();
         email.clear();
     }
@@ -118,9 +118,11 @@ public class ComposerPreview extends Application {
     public static String getPreviewURL(String composerPreview_URL) {
 
         //Create the PREVIEW_URL
-        String s = composerPreview_URL.replace(ENVIRONMENT_URL, "");
+        PREVIEW_URL = composerPreview_URL.replace(ENVIRONMENT_URL, MAPI_URL);
 
-        PREVIEW_URL = MAPI_URL + s;
+        //PREVIEW_URL = MAPI_URL + s;
+
+        System.out.println(PREVIEW_URL);
 
         return PREVIEW_URL;
     }
@@ -137,7 +139,7 @@ public class ComposerPreview extends Application {
         Session session = Session.getInstance(props,
                 new javax.mail.Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication("gwyn.lockett@guardian.co.uk", "xcxrveyzxnywqdvq");
+                        return new PasswordAuthentication(USERNAME, PWD);
                     }
                 });
 
@@ -172,7 +174,7 @@ public class ComposerPreview extends Application {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Validate Fields");
             alert.setHeaderText(null);
-            alert.setContentText("Please enter both the composerURL and the Email addreess");
+            alert.setContentText("Please enter both the composerURL and the Email address");
             alert.showAndWait();
 
             return false;
@@ -197,18 +199,6 @@ public class ComposerPreview extends Application {
 
             return false;
         }
-
-//    public static boolean isValidEmailAddress(String email) {
-//        boolean result = true;
-//        try {
-//            InternetAddress emailAddr = new InternetAddress(email);
-//            emailAddr.validate();
-//        } catch (AddressException ex) {
-//            result = false;
-//        }
-//        return result;
-//    }
-
 
     }
 }
