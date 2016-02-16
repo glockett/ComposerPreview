@@ -87,10 +87,12 @@ public class ComposerPreview extends Application {
                 try {
                     getPreviewURL(url);
                     send(sendTo);
+                    clearTextFields();
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
             }
+
 
         });
 
@@ -108,6 +110,11 @@ public class ComposerPreview extends Application {
         window.show();
     }
 
+    public void clearTextFields(){
+        composerURL.clear();
+        email.clear();
+    }
+
     public static String getPreviewURL(String composerPreview_URL) {
 
         //Create the PREVIEW_URL
@@ -117,10 +124,6 @@ public class ComposerPreview extends Application {
 
         return PREVIEW_URL;
     }
-
-
-
-
 
 
     public static void send(String emailAddress) {
@@ -157,16 +160,11 @@ public class ComposerPreview extends Application {
             alert.setContentText("Success - Your Email has been sent");
             alert.showAndWait();
 
-
-
-
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }
 
-  }
-
-
+    }
 
     private boolean valdateFields() {
         if (composerURL.getText().isEmpty() | email.getText().isEmpty()) {
@@ -210,8 +208,6 @@ public class ComposerPreview extends Application {
 //        }
 //        return result;
 //    }
-
-
 
 
     }
