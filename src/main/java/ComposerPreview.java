@@ -1,5 +1,6 @@
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -10,10 +11,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import javax.mail.*;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ComposerPreview extends Application {
 
@@ -78,16 +80,26 @@ public class ComposerPreview extends Application {
             String url = composerURL.getText();
             String sendTo = email.getText();
 
-            if (url.isEmpty()) {
-                lbErrorMsg.setText("* Error! - Please enter the ComposerURL");
-            } else if (sendTo.isEmpty()) {
-                lbErrorMsg.setText("* Error! - Please enter a valid email!");
-            } else if (isValidEmailAddress(sendTo)) {
-                getPreviewURL(url);
-                send(sendTo);
-            } else {
-                lbErrorMsg.setText("* Error - Email is not valid!");
+            if (valdateFields() & valdateEmail()) {
+
+                try {
+                    getPreviewURL(url);
+                    send(sendTo);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
             }
+
+//            if (url.isEmpty()) {
+//                lbErrorMsg.setText("* Error! - Please enter the ComposerURL");
+//            } else if (sendTo.isEmpty()) {
+//                lbErrorMsg.setText("* Error! - Please enter a valid email!");
+//            } else if (isValidEmailAddress(sendTo)) {
+//                getPreviewURL(url);
+//                send(sendTo);
+//            } else {
+//                lbErrorMsg.setText("* Error - Email is not valid!");
+//            }
         });
 
         HBox hb = new HBox();
@@ -150,15 +162,48 @@ public class ComposerPreview extends Application {
 
     }
 
-    public static boolean isValidEmailAddress(String email) {
-        boolean result = true;
-        try {
-            InternetAddress emailAddr = new InternetAddress(email);
-            emailAddr.validate();
-        } catch (AddressException ex) {
-            result = false;
+    private boolean valdateFields() {
+        if (composerURL.getText().isEmpty() | email.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validate Fields");
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter both the composerURL and the Email addreess");
+            alert.showAndWait();
+
+            return false;
+
         }
-        return result;
+        return true;
+    }
+
+    private boolean valdateEmail() {
+        Pattern p = Pattern.compile("[a-zA-Z0-9][a-zA-Z0-9._]*@[a-zA-Z0-9]+([.][a-zA-Z]+)+");
+        Matcher m = p.matcher(email.getText());
+        if (m.find() && m.group().equals(email.getText())) {
+            return true;
+        } else
+
+        {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validate Email");
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter a valid email address");
+            alert.showAndWait();
+
+            return false;
+        }
+
+//    public static boolean isValidEmailAddress(String email) {
+//        boolean result = true;
+//        try {
+//            InternetAddress emailAddr = new InternetAddress(email);
+//            emailAddr.validate();
+//        } catch (AddressException ex) {
+//            result = false;
+//        }
+//        return result;
+//    }
     }
 }
 
