@@ -23,7 +23,8 @@ public class ComposerPreview extends Application {
     private static String PWD = "xcxrveyzxnywqdvq";
     private static String PREVIEW_URL;
     private static final String ENVIRONMENT_URL = "http://viewer.gutools.co.uk/preview/";
-    private static final String MAPI_URL = "x-gu://preview.mobile-apps.guardianapis.com/items/";
+    //private static final String MAPI_URL = "x-gu://preview.mobile-apps.guardianapis.com/items/";
+    private static final String MAPI_URL = "https://entry.mobile-apps.guardianapis.com/deeplink/items/";
 
     Stage window;
     Label lbAppTitle;
@@ -71,10 +72,10 @@ public class ComposerPreview extends Application {
 
         //Defining the buttons
         btnExit = new Button();
-        btnExit.setText("Quit / Close");
-        btnExit.setStyle(" -fx-font-size: 14px;");
+        btnExit.setText("Quit Preview Generator");
+        btnExit.setStyle("-fx-background-color: linear-gradient(#e56e6e,#c30505); -fx-text-fill: #383640;");
         btnExit.setOnAction(e -> {
-                window.close();
+            window.close();
         });
 
         //Defining the buttons
@@ -128,7 +129,6 @@ public class ComposerPreview extends Application {
         return PREVIEW_URL;
     }
 
-
     public static void send(String emailAddress) {
 
         Properties props = new Properties();
@@ -136,6 +136,11 @@ public class ComposerPreview extends Application {
         props.put("mail.smtp.ssl.enable", true);
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.port", "465");
+
+        props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        props.setProperty("mail.smtp.socketFactory.fallback", "false");
+        props.setProperty("mail.smtp.port", "465");
+        props.setProperty("mail.smtp.socketFactory.port", "465");
 
         Session session = Session.getInstance(props,
                 new javax.mail.Authenticator() {

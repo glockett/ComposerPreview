@@ -21,9 +21,21 @@
     -fx-font-weight: bold;
     -fx-background-color: linear-gradient(#9EA7E5,#61A2B1);
     -fx-text-fill: #383640;
+    -fx-max-width: 250px;
 
 }
 .button:hover {
     -fx-background-color: linear-gradient(#2A5058,#61A2B1);
     -fx-text-fill: #FFFFFF;
 }
+
+.btnExit {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#b48484,#f29090);
+    -fx-text-fill: #383640;
+
+    -fx-padding: 1000 10 10 10;
+
+}
+
