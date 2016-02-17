@@ -6,6 +6,8 @@ config.properties
 .mtj.tmp/
 
 # Package Files #
+/src/main/resources/config.properties
+/src/main/java/config.properties
 *.jar
 *.war
 *.ear

@@ -51,7 +51,7 @@ public class Main extends Application {
         Properties config = new Properties();
 
         try {
-            config.load (new FileInputStream("config.properties"));
+            config.load (new FileInputStream("src/main/resources/config.properties"));
 
             USERNAME = config.getProperty("username");
             PWD = config.getProperty("password");
