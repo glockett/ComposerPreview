@@ -92,6 +92,7 @@ public class Main extends Application {
 
         //Set action for the Exit button
         btnExit.setOnAction(e -> {
+
             window.close();
         });
 
