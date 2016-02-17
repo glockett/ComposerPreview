@@ -16,6 +16,8 @@ import javafx.stage.Stage;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,7 +30,6 @@ public class Main extends Application {
     private static final String ENVIRONMENT_URL = "http://viewer.gutools.co.uk/preview/";
     private static final String MAPI_URL = "https://entry.mobile-apps.guardianapis.com/deeplink/items/";
 
-    Stage window;
     Text txAppInstructions;
     Text txAppTitle;
     Label lbComposerURL;
@@ -91,8 +92,7 @@ public class Main extends Application {
 
         //Set action for the Exit button
         btnExit.setOnAction(e -> {
-
-            window.close();
+            primaryStage.close();
         });
 
         btnSend = new Button();
@@ -233,7 +233,7 @@ public class Main extends Application {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Validate Fields");
             alert.setHeaderText(null);
-            alert.setContentText("Please enter both the tfComposerURL and the Email address");
+            alert.setContentText("Please enter both the ComposerURL and the Email address");
             alert.showAndWait();
 
             return false;
@@ -253,7 +253,7 @@ public class Main extends Application {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Validate Email");
             alert.setHeaderText(null);
-            alert.setContentText("Please enter a valid tfEmail address");
+            alert.setContentText("Please enter a valid Email address");
             alert.showAndWait();
 
             return false;
