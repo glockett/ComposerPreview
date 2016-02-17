@@ -16,19 +16,17 @@ import javafx.stage.Stage;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Main extends Application {
 
-    private static String USERNAME = "gwyn.lockett@guardian.co.uk";
-    private static String PWD = "hxxaqkdcmkqthgnn";
+    private static String USERNAME = "USERNAME";
+    private static String PWD = "PASSWORD";
     private static String PREVIEW_URL;
-    private static final String ENVIRONMENT_URL = "http://viewer.gutools.co.uk/preview/";
-    private static final String MAPI_URL = "https://entry.mobile-apps.guardianapis.com/deeplink/items/";
+    private static final String COMPOSER_TOOL_URL = "PREVEIW URL";
+    private static final String MAPI_URL = "APPLINK URL";
 
     Text txAppInstructions;
     Text txAppTitle;
@@ -177,7 +175,7 @@ public class Main extends Application {
     public static String getPreviewURL(String composerPreview_URL) {
 
         //Create the PREVIEW_URL
-        PREVIEW_URL = composerPreview_URL.replace(ENVIRONMENT_URL, MAPI_URL);
+        PREVIEW_URL = composerPreview_URL.replace(COMPOSER_TOOL_URL, MAPI_URL);
 
         return PREVIEW_URL;
     }
