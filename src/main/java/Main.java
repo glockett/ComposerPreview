@@ -10,7 +10,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.SVGPath;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -51,7 +50,7 @@ public class Main extends Application {
 
         BorderPane root = new BorderPane();
 
-        Scene scene = new Scene(root, 700, 400, Color.WHITE);
+        Scene scene = new Scene(root, 700, 300, Color.WHITE);
         primaryStage.setScene(scene);
         scene.getStylesheets().add("style.css");
         primaryStage.show();
@@ -62,27 +61,27 @@ public class Main extends Application {
         gridPane.setHgap(10);
         gridPane.setVgap(10);
 
-        ColumnConstraints col1 = new ColumnConstraints(100);
+        ColumnConstraints col1 = new ColumnConstraints(130);
         ColumnConstraints col2 = new ColumnConstraints(100, 300, 700);
         col2.setHgrow(Priority.ALWAYS);
-        gridPane.getColumnConstraints().addAll(col2, col2);
+        gridPane.getColumnConstraints().addAll(col1, col2);
 
 
         //Defining elements
-        txAppInstructions = new Text ("Please enter the composerULR and the email address where you wish to send the " +
-                "link to");
+        txAppInstructions = new Text ("Please enter the composerULR and the Email address where you wish to send the " +
+                "link to.");
         lbComposerURL = new Label("Composer URL:");
         lbEmail = new Label("Email address");
         lbErrorMsg = new Label("");
         lbErrorMsg.setStyle("-fx-text-fill: red;");
 
         tfComposerURL = new TextField();
-        tfComposerURL.setPromptText("Enter the tfComposerURL.");
+        tfComposerURL.setPromptText("Enter the composerURL.");
         tfComposerURL.setPrefColumnCount(10);
         tfComposerURL.getText();
 
         tfEmail = new TextField();
-        tfEmail.setPromptText("Enter the tfEmail address.");
+        tfEmail.setPromptText("Enter the email address.");
         tfEmail.setPrefColumnCount(10);
         tfEmail.getText();
 

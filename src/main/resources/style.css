@@ -5,13 +5,18 @@
     -fx-padding: 10;
     -fx-font-size: 16px;
     -fx-max-width: 500px;
-    -fx-max-height: 500px;
+    -fx-max-height: 400px;
 }
 
 .header {
     -fx-background-color: lightblue;
     -fx-background-radius: 0%;
     -fx-background-inset: 5px;
+    -fx-font-size: 30px;
+    -fx-padding: 10px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+
 }
 
 .label {
@@ -40,7 +45,7 @@
     -fx-font-size: 16px;
     -fx-font-weight: bold;
     -fx-background-color: linear-gradient(#e56e6e,#c30505);
-    -fx-text-fill: #383640;
+    -fx-text-fill: #b0b0b0;
 }
 
 .button-Exit:hover {
