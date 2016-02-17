@@ -25,8 +25,8 @@ public class Main extends Application {
     private static String USERNAME = "USERNAME";
     private static String PWD = "PASSWORD";
     private static String PREVIEW_URL;
-    private static final String COMPOSER_TOOL_URL = "PREVEIW URL";
-    private static final String MAPI_URL = "APPLINK URL";
+    private static final String COMPOSER_TOOL_URL = "PREVIEW_URL";
+    private static final String MAPI_URL = "APPLINK_URL";
 
     Text txAppInstructions;
     Text txAppTitle;
