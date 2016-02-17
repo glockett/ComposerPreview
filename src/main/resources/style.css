@@ -7,6 +7,13 @@
     -fx-max-width: 500px;
     -fx-max-height: 500px;
 }
+
+.header {
+    -fx-background-color: lightblue;
+    -fx-background-radius: 0%;
+    -fx-background-inset: 5px;
+}
+
 .label {
     -fx-font-size: 16px;
 }
