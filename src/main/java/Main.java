@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 
 public class Main extends Application {
 
-    private static String USERNAME= "gwyn.lockett@guardian.co.uk";
+    private static String USERNAME = "gwyn.lockett@guardian.co.uk";
     private static String PWD = "hxxaqkdcmkqthgnn";
     private static String PREVIEW_URL;
     private static final String ENVIRONMENT_URL = "http://viewer.gutools.co.uk/preview/";
@@ -260,7 +260,6 @@ public class Main extends Application {
         }
 
     }
-
 
 }
 
