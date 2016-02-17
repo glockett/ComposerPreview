@@ -16,17 +16,18 @@ import javafx.stage.Stage;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Main extends Application {
 
-    private static String USERNAME = "gwyn.lockett@guardian.co.uk";
-    private static String PWD = "xcxrveyzxnywqdvq";
+    private static String USERNAME;
+    private static String PWD;
     private static String PREVIEW_URL;
     private static final String ENVIRONMENT_URL = "http://viewer.gutools.co.uk/preview/";
-    //private static final String MAPI_URL = "x-gu://preview.mobile-apps.guardianapis.com/items/";
     private static final String MAPI_URL = "https://entry.mobile-apps.guardianapis.com/deeplink/items/";
 
     Stage window;
@@ -47,6 +48,18 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
+        Properties config = new Properties();
+
+        try{
+            config.load (new FileInputStream ("config.properties"));
+
+            USERNAME = config.getProperty("username");
+            PWD = config.getProperty("password");
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
 
         BorderPane root = new BorderPane();
 
@@ -95,7 +108,6 @@ public class Main extends Application {
 
             window.close();
         });
-
 
         btnSend = new Button();
         btnSend.setText("Send the link");
@@ -262,6 +274,8 @@ public class Main extends Application {
         }
 
     }
+
+
 }
 
 
