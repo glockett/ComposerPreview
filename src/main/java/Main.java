@@ -16,17 +16,19 @@ import javafx.stage.Stage;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Main extends Application {
 
-    private static String USERNAME = "USERNAME";
-    private static String PWD = "PASSWORD";
+    private static String USERNAME;
+    private static String PWD;
     private static String PREVIEW_URL;
-    private static final String COMPOSER_TOOL_URL = "PREVIEW_URL";
-    private static final String MAPI_URL = "APPLINK_URL";
+    private static String COMPOSER_LINK;
+    private static String MAPI_LINK;
 
     Text txAppInstructions;
     Text txAppTitle;
@@ -45,6 +47,21 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
+        Properties config = new Properties();
+
+        try {
+            config.load (new FileInputStream("config.properties"));
+
+            USERNAME = config.getProperty("username");
+            PWD = config.getProperty("password");
+            COMPOSER_LINK = config.getProperty("composer_link");
+            MAPI_LINK = config.getProperty("mapi_link");
+
+        }
+        catch (IOException e){
+            e. printStackTrace();
+        }
 
         BorderPane root = new BorderPane();
 
@@ -175,7 +192,7 @@ public class Main extends Application {
     public static String getPreviewURL(String composerPreview_URL) {
 
         //Create the PREVIEW_URL
-        PREVIEW_URL = composerPreview_URL.replace(COMPOSER_TOOL_URL, MAPI_URL);
+        PREVIEW_URL = composerPreview_URL.replace(COMPOSER_LINK, MAPI_LINK);
 
         return PREVIEW_URL;
     }
