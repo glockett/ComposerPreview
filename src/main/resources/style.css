@@ -14,9 +14,7 @@
     -fx-background-inset: 5px;
     -fx-font-size: 30px;
     -fx-padding: 10px;
-    -fx-text-fill: white;
     -fx-font-weight: bold;
-
 }
 
 .label {

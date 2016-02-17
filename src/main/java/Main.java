@@ -68,7 +68,7 @@ public class Main extends Application {
 
 
         //Defining elements
-        txAppInstructions = new Text ("Please enter the composerULR and the Email address where you wish to send the " +
+        txAppInstructions = new Text("Please enter the composerULR and the Email address where you wish to send the " +
                 "link to.");
         lbComposerURL = new Label("Composer URL:");
         lbEmail = new Label("Email address");
@@ -87,7 +87,7 @@ public class Main extends Application {
 
         //Defining the buttons
         btnExit = new Button();
-        btnExit.setText("Quit Preview Generator");
+        btnExit.setText("Quit the app");
         btnExit.getStyleClass().add("button-Exit");
 
         //Set action for the Exit button
@@ -97,7 +97,7 @@ public class Main extends Application {
 
 
         btnSend = new Button();
-        btnSend.setText("Send Preview Link");
+        btnSend.setText("Send the link");
 
         //Set action for the GetPreview button
         btnSend.setOnAction(e -> {
@@ -139,11 +139,11 @@ public class Main extends Application {
         gridPane.add(lbErrorMsg, 0, 3);
         GridPane.setColumnSpan(lbErrorMsg, 2);
 
-        GridPane.setHalignment(btnSend, HPos.LEFT);
-        gridPane.add(btnSend, 0, 4);
-
-        GridPane.setHalignment(btnExit, HPos.RIGHT);
-        gridPane.add(btnExit, 1, 4);
+        //Set horizontal box for buttons
+        HBox hbox = new HBox();
+        hbox.setPadding(new Insets(15, 12, 15, 12));
+        hbox.setSpacing(50);   // Gap between nodes
+        hbox.getChildren().addAll(btnSend, btnExit);
 
         //Defining header
         FlowPane header = new FlowPane();
@@ -157,16 +157,16 @@ public class Main extends Application {
         img.setFitHeight(40);
 
         txAppTitle = new Text("Mobile Apps - PreviewURL Generator");
+        txAppTitle.setStyle("-fx-text-fill: darkblue;");
 
-        header.getChildren().addAll(img,txAppTitle);
+        header.getChildren().addAll(img, txAppTitle);
 
         root.setTop(header);
         root.setCenter(gridPane);
+        root.setBottom(hbox);
 
         //Set main window
         primaryStage.setTitle("Composer Preview");
-
-
 
     }
 
@@ -179,9 +179,6 @@ public class Main extends Application {
 
         //Create the PREVIEW_URL
         PREVIEW_URL = composerPreview_URL.replace(ENVIRONMENT_URL, MAPI_URL);
-
-        //PREVIEW_URL = MAPI_URL + s;
-        System.out.println(PREVIEW_URL);
 
         return PREVIEW_URL;
     }
